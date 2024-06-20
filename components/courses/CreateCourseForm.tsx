@@ -16,10 +16,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { ComboBox } from "../custom/ComboBox"
-import { Router } from "lucide-react"
-import { useRouter } from "next/router"
 import ToasterProvider from "../providers/ToasterProvider"
 import toast from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
     title: z.string().min(2, { message: "Title is required and minimum 2 characters" }),
@@ -37,7 +36,7 @@ interface CreateCourseFormProps {
 }
 
 const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
-    const Router = useRouter()
+    const Router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -46,12 +45,14 @@ const CreateCourseForm = ({ categories }: CreateCourseFormProps) => {
             subCategoryId: "",
         },
     })
-    const  onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const res = await axios.post('/instructor/courses', values);
+            console.log('1',values)
+            const res = await axios.post('/api/courses', values);
+            console.log('3',res)
             Router.push(`/instructor/courses/${res.data.id}/basic`)
             toast.success('New courses created ')
-            
+
         } catch (error) {
             console.log("Failed to create new course", error)
             toast.error('Some thing went wrong!')
