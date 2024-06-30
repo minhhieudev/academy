@@ -1,12 +1,11 @@
-import Topbar from '@/components/layout/Topbar'
-import React, { Children } from 'react'
+import Topbar from "@/components/layout/Topbar"
 
-function HomeLayout({children}: {children: React.ReactNode}) {
+const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <Topbar/>
+    <>
+      <Topbar />
       {children}
-    </div>
+    </>
   )
 }
 

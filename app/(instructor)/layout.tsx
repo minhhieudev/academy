@@ -1,26 +1,25 @@
-import Sidebar from '@/components/layout/Sidebar'
-import Topbar from '@/components/layout/Topbar'
-import { auth } from '@clerk/nextjs/server'
-import { redirect } from 'next/navigation'
-import React from 'react'
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+
+import Topbar from "@/components/layout/Topbar";
+import Sidebar from "@/components/layout/Sidebar";
 
 const InstructorLayout = ({ children }: { children: React.ReactNode }) => {
-    const {userId} =auth();
+  const { userId } = auth()
 
-    if(!userId){
-        return redirect("/sign-in");
-    }
-    return (
-        <div className="h-full flex flex-col">
-            <Topbar />
-            <div className="flex-1 flex" >
-                <Sidebar />
-                <div className="flex-1">
-                    {children}
-                </div>
-            </div>
-        </div>
-    )
-}
+  if (!userId) {
+    return redirect("/sign-in")
+  }
 
-export default InstructorLayout
+  return (
+    <div className="h-full flex flex-col">
+      <Topbar />
+      <div className="flex-1 flex">
+        <Sidebar />
+        <div className="flex-1">{children}</div>
+      </div>
+    </div>
+  );
+};
+
+export default InstructorLayout;

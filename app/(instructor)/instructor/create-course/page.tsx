@@ -1,11 +1,10 @@
 import CreateCourseForm from "@/components/courses/CreateCourseForm"
 import { db } from "@/lib/db"
-import { Label } from "@radix-ui/react-label"
 
 const CreateCoursePage = async () => {
   const categories = await db.category.findMany({
     orderBy: {
-      name: 'asc'
+      name: "asc"
     },
     include: {
       subCategories: true
@@ -17,9 +16,9 @@ const CreateCoursePage = async () => {
       <CreateCourseForm categories={categories.map((category) => ({
         label: category.name,
         value: category.id,
-        subCategories: category.subCategories.map((sub) => ({
-          label: sub.name,
-          value: sub.id
+        subCategories: category.subCategories.map((subcategory) => ({
+          label: subcategory.name,
+          value: subcategory.id
         }))
       }))} />
     </div>
