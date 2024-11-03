@@ -39,6 +39,7 @@
     "react-quill": "^2.0.0",
     "recharts": "^2.12.7",
     "stripe": "^16.0.0",
+    "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.12.0",
